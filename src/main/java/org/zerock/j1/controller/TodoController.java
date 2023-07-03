@@ -1,5 +1,6 @@
 package org.zerock.j1.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 //api 서버란뜻
 @RequestMapping("/api/todos/")
 @RequiredArgsConstructor
+//CORS 해결 간단한방법1 annotation 좋은방법은 아니다.
+@CrossOrigin
 public class TodoController {
     
     private final TodoService todoService;

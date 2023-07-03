@@ -34,7 +34,7 @@ public class TodoServiceImpl implements TodoService {
 
         Page<Todo> result = todoRepository.findAll(pageable);
         // 실제로원하는것은 Entity를 DTO로 변환해주어야됨
-
+        // react와 맞춰줘야된다.
         List<TodoDTO> dtoList=
         result.getContent().stream()
         .map(todo -> modelMapper.map(todo, TodoDTO.class))
