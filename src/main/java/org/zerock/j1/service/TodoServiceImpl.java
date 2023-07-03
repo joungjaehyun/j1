@@ -46,4 +46,16 @@ public class TodoServiceImpl implements TodoService {
         // Controller로 보낼값
         return respnose;
 }
+
+    @Override
+    public TodoDTO register(TodoDTO dto) {
+        
+        // dto로 받아서 Todo entity로 변경
+        Todo entity = modelMapper.map(dto, Todo.class);
+        // 변경한 entity를 실제로 저장함
+        Todo result = todoRepository.save(entity);
+
+        // 저장한 entity를 다시 TodoDTO로 변경 해서 return 해줌
+        return modelMapper.map(result, TodoDTO.class);
+    }
 }
