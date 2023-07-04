@@ -15,4 +15,6 @@ public interface TodoService {
     TodoDTO getOne(Long tno);
     // remove
     void remove(Long tno);
+    // modify
+    void modify(TodoDTO dto);
 }

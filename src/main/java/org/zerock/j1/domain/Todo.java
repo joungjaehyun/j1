@@ -29,5 +29,9 @@ public class Todo {
     // 길이 300에 not null
     @Column(length = 300, nullable = false)
     private String title;
+
+    public void changeTitle(String title){
+        this.title=title;
+    }
     
 }

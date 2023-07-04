@@ -76,4 +76,15 @@ public class TodoServiceImpl implements TodoService {
         
         todoRepository.deleteById(tno);
     }
+
+    @Override
+    public void modify(TodoDTO dto) {
+        // 수정날짜 관련으로 걸리기 때문에 이방법을 알고있는게 
+        // 훨씬 정신적으로 편하다.
+        Optional<Todo> result = todoRepository.findById(dto.getTno());
+        Todo todo = result.orElseThrow();
+
+        todo.changeTitle(dto.getTitle());
+        todoRepository.save(todo);
+    }
 }
