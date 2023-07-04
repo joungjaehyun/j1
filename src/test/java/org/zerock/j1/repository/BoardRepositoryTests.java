@@ -148,4 +148,11 @@ public class BoardRepositoryTests {
         result.forEach(arr -> log.info(Arrays.toString(arr)));
         
     }
+
+    // QBoard를 써서 만든테스트
+    @Test
+    public void testSearch1(){
+        boardRepository.search1();
+    }
+
 }

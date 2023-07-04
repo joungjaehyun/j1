@@ -9,9 +9,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.zerock.j1.domain.Board;
+import org.zerock.j1.repository.search.BoardSearch;
 
 // repository생성
-public interface BoardRepository extends JpaRepository<Board, Long> {
+// 검색기능구현할거다를 위해 BoardSearch도 붙여준다.
+public interface BoardRepository extends JpaRepository<Board, Long>, BoardSearch {
     // repository에 메소드명을 넣으면
     // 자동으로 쿼리 메소드를 만들어낸다.
     // 생각보다 사용되진 않는다 why? 복잡한 쿼리 문을 생성을 하기 힘들기떄문.
@@ -50,7 +52,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     // nativeQuery
     // 급할때 쓴다.
     // native Query를 쓰면 DB에 종속되게 되버린다.
-    @Query(value = "select * from t_board", nativeQuery=true)
+    @Query(value = "select * from t_board ", nativeQuery=true)
     List<Object[]> listNative();
 
 }
