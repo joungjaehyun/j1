@@ -20,7 +20,7 @@ import lombok.ToString;
 public class Sample {
     // Entity Class
     // 모든 Entity는 primary key(ID)가있어야된다
-    // Entity 객체는 수정은 DB수정이니까 getter만
+    // Entity 객체는 수정은 DB수정이니까 getter만 EX) 회원가입
     @Id
     private String keyCol;
     
