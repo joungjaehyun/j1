@@ -20,6 +20,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     // JPQL 방식 @Query annotation을 넣어준다
     // * 사용 불가 alias사용하거나 entity property사용
+    // 대소문자 및 띄어쓰기 주의
     // 변수앞에는 항상 @Param(명칭)
     // DDL은 @Modifying라는 annotation을 붙여줘야된다. => 웬만해선 사용하는 것을지양해야된다.
     // 장점 join 처리시 결과뽑아내는게 좋다.
