@@ -66,6 +66,7 @@ public class BoardRepositoryTests {
 
         boardRepository.save(board);
     }
+    // Query method 관련 테스트
     @Test
     public void testQuery1(){
 
@@ -75,6 +76,17 @@ public class BoardRepositoryTests {
         log.info(list.size());
         log.info(list);
     }
+    // JPQL 관련 테스트
+    @Test
+    public void testQuery1_1(){
+
+        java.util.List<Board> list = boardRepository.listTitle("1");
+
+        log.info("----------------------");
+        log.info(list.size());
+        log.info(list);
+    }
+
     // 검색하면서 Paging 처리가 되는방법
     @Test
     public void testQuery2(){
