@@ -7,7 +7,10 @@ import org.zerock.j1.dto.TodoDTO;
 
 @Transactional
 public interface TodoService {
-    //CRUD
+    //Read
     PageResponseDTO<TodoDTO> getList();
+    // Create
     TodoDTO register(TodoDTO dto);
+    //Read
+    TodoDTO getOne(Long tno);
 }

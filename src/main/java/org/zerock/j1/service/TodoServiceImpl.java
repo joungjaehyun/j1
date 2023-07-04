@@ -1,7 +1,7 @@
 package org.zerock.j1.service;
 
 import java.util.List;
-
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -57,5 +57,17 @@ public class TodoServiceImpl implements TodoService {
 
         // 저장한 entity를 다시 TodoDTO로 변경 해서 return 해줌
         return modelMapper.map(result, TodoDTO.class);
+    }
+
+    @Override
+    public TodoDTO getOne(Long tno) {
+        // Optional 자바에서 중요한 역활
+        Optional<Todo> reuslt = todoRepository.findById(tno);
+
+        Todo todo = reuslt.orElseThrow();
+
+       TodoDTO dto = modelMapper.map(todo, TodoDTO.class);
+        
+       return dto;
     }
 }
