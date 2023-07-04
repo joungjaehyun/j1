@@ -152,7 +152,12 @@ public class BoardRepositoryTests {
     // QBoard를 써서 만든테스트
     @Test
     public void testSearch1(){
-        boardRepository.search1();
+
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+       Page<Board> result = boardRepository.search1("tcw","1", pageable);
+       log.info(result.getTotalElements());
+
+       result.get().forEach(b -> log.info(b));
     }
 
 }
