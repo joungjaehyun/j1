@@ -34,4 +34,10 @@ public class Board extends BaseEntity{
     @Column(length = 50, nullable = false)
     private String writer;
 
+    // setter 대신에 change를 쓴다
+
+    public void changeTitle(String title){
+        this.title=title;
+    }
+
 }
