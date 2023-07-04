@@ -70,4 +70,10 @@ public class TodoServiceImpl implements TodoService {
         
        return dto;
     }
+
+    @Override
+    public void remove(Long tno) {
+        
+        todoRepository.deleteById(tno);
+    }
 }
