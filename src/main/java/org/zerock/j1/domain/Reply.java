@@ -1,6 +1,7 @@
 package org.zerock.j1.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,7 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = "board")
 public class Reply {
     
     @Id
@@ -30,7 +31,8 @@ public class Reply {
     private String replyFile;
 
     private String replyer;
-
-    @ManyToOne
+    // 필요할때 까지 쿼리를 날리지않게 하기 위해서 건다
+    // 연관관계를 걸때는 기본적으로 LazyLoading을 건다.
+    @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 }

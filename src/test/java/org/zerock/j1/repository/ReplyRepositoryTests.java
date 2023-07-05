@@ -3,10 +3,12 @@ package org.zerock.j1.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.zerock.j1.domain.Board;
 import org.zerock.j1.domain.Reply;
-import org.zerock.j1.repository.ReplyRepository;
-
 import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
@@ -53,4 +55,14 @@ public class ReplyRepositoryTests {
             }
         }
     }
+    @Test
+    public void testListBoard(){
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("rno").ascending());
+        Long bno = 99L;
+        Page<Reply> result = replyRepository.listBoard(bno, pageable);
+
+        result.get().forEach(r-> log.info(r));
+        
+    }
+
 }
