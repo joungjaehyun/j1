@@ -69,7 +69,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     }
 
     @Override
-    public Page<Object[]> searchWithRcnt(String searchType, String searchKeyword, Pageable pageable) {
+    public Page<Object[]> searchWithRcnt(String searchType, String keyword, Pageable pageable) {
 
         QBoard board = QBoard.board;
         QReply reply = QReply.reply;
@@ -78,6 +78,28 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         JPQLQuery<Board> query = from(board);
         // left join 항상 left join거는 쪽을 기준으로 잡는다.
         query.leftJoin(reply).on(reply.board.eq(board));
+
+        // 검색조건 추가
+        if (keyword != null && searchType != null) {
+            // tc => [t,c]
+            String[] searchArr = searchType.split("");
+            // BooleanBuilder 생성 ()
+            BooleanBuilder searchBuilder = new BooleanBuilder();
+
+            for (String type : searchArr) {
+
+                switch (type) {
+                    case "t" -> searchBuilder.or(board.title.contains(keyword));
+                    case "c" -> searchBuilder.or(board.content.contains(keyword));
+                    case "w" -> searchBuilder.or(board.writer.contains(keyword));
+                }
+
+            } // end for
+
+              // for문 끝난후 where 로 searchBuilder 추가
+            query.where(searchBuilder);
+        }
+
         // group by
         query.groupBy(board);
 
@@ -89,22 +111,22 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         // Paging 처리
         this.getQuerydsl().applyPagination(pageable, tupleQuery);
 
-
         log.info("1------------------------");
         List<Tuple> tuples = tupleQuery.fetch();
 
-        List<Object[]> arrList = tuples.stream().map(tuple-> tuple.toArray()).collect(Collectors.toList());
+        List<Object[]> arrList = tuples.stream().map(tuple -> tuple.toArray()).collect(Collectors.toList());
         // tuple 내부에는 toArray가 나온다.
-
 
         log.info("2------------------------");
         log.info(tuples);
         log.info("3------------------------");
         long count = tupleQuery.fetchCount();
-    
+
         log.info("count: " + count);
 
-        return null;
+
+        // Page까지 처리완료 
+        return new PageImpl<>(arrList, pageable, count);
 
     }
 
