@@ -16,6 +16,9 @@ public interface BoardSearch {
     // List<Board> search1();
 
     //Page<Board> search1 (Pageable pageable);
-    
+    // 기본 게시판의 검색조건
     Page<Board> search1 (String searchType, String searchKeyword, Pageable pageable);
+
+    Page<Object[]> searchWithRcnt(String searchType, String searchKeyword, Pageable pageable);
+
 }

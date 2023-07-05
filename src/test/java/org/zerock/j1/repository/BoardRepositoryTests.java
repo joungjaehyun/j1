@@ -170,4 +170,12 @@ public class BoardRepositoryTests {
         }
     }
 
+    @Test
+    public void testListWithRcntSearch(){
+
+         Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+
+         boardRepository.searchWithRcnt(null, null, pageable);
+    }
+
 }
