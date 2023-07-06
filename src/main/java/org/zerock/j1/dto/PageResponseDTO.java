@@ -22,10 +22,18 @@ public class PageResponseDTO<E> {
     
     private PageRequestDTO requestDTO;
     
+    private int page, size;
+
+
     public PageResponseDTO(List<E> dtoList, long totalCount, PageRequestDTO pageRequestDTO){
        
         this.dtoList = dtoList;
         this.totalCount = totalCount;
         this.requestDTO = pageRequestDTO;
+
+        this.page = pageRequestDTO.getPage();
+
+        this.size = pageRequestDTO.getSize();
+        
     }
 }
