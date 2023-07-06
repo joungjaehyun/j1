@@ -17,7 +17,7 @@ public class BoardServiceImpl  implements BoardService{
     
     private final BoardRepository boardRepository;
     // 등록작업을 위해서 사용한다.
-    private final ModelMapper modelMapper;
+    // private final ModelMapper modelMapper;
 
     @Override
     public PageResponseDTO<BoardListRcntDTO> listRcnt(PageRequestDTO pageRequestDTO) {
