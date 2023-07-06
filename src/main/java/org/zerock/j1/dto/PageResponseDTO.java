@@ -1,6 +1,7 @@
 package org.zerock.j1.dto;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import lombok.Data;
 
@@ -47,5 +48,8 @@ public class PageResponseDTO<E> {
         this.end = tempEnd > realEnd ? realEnd : tempEnd;
 
         this.next  = (this.end * this.size) < totalCount;
+
+        //pageNums 처리
+        this.pageNums = IntStream.rangeClosed(start, end).boxed().toList();
     }
 }
