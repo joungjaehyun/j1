@@ -16,9 +16,8 @@ import org.zerock.j1.dto.TodoDTO;
 import org.zerock.j1.repository.TodoRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
+
 @RequiredArgsConstructor
 @Service
 public class TodoServiceImpl implements TodoService {
