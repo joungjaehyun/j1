@@ -49,5 +49,11 @@ public class ReplyController {
         return Map.of("result", newRno);
 
     }
+
+    @GetMapping("{rno}")
+    public ReplyDTO getOne(@PathVariable("rno") Long rno) {
+
+        return replyService.read(rno);        
+    }
     
 }

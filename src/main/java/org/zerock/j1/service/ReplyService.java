@@ -15,5 +15,8 @@ public interface ReplyService {
     // reply insert
     Long register(ReplyDTO replyDTO);
 
+    // reply read
+    ReplyDTO read(Long rno);
+
 
 }
