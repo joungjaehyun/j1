@@ -21,5 +21,8 @@ public interface ReplyService {
     // reply delete
     void remove(Long rno);
 
+    // reply modify
+    void modify(ReplyDTO replyDTO);
+
 
 }
