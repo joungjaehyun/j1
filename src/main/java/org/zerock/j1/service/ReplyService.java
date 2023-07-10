@@ -9,5 +9,11 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface ReplyService {
     
+    // reply list
     PageResponseDTO<ReplyDTO> list(ReplyPageRequestDTO requestDTO);
+
+    // reply insert
+    Long register(ReplyDTO replyDTO);
+
+
 }
