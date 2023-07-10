@@ -18,5 +18,8 @@ public interface ReplyService {
     // reply read
     ReplyDTO read(Long rno);
 
+    // reply delete
+    void remove(Long rno);
+
 
 }
