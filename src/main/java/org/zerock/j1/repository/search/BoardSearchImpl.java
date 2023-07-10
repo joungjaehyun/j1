@@ -96,6 +96,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
                     case "t" -> searchBuilder.or(board.title.contains(keyword));
                     case "c" -> searchBuilder.or(board.content.contains(keyword));
                     case "w" -> searchBuilder.or(board.writer.contains(keyword));
+                    case "r" -> searchBuilder.or(reply.replyText.contains(keyword));
                 }
 
             } // end for
@@ -183,8 +184,9 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
             BoardListRcntDTO.class, 
             board.bno, 
             board.title,
-             board.writer, 
-             reply.countDistinct().as("replyCount")));
+            board.writer,
+            board.regDate, 
+            reply.countDistinct().as("replyCount")));
 
         // 쿼리를 List<BoardListRcntDTO>로 추출
         List<BoardListRcntDTO> list = listQuery.fetch();
